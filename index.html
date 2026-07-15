@@ -2,107 +2,154 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>EuEscrevo Beta 0.4</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EuEscrevo Beta 1</title>
 <style>
-:root{--ink:#292824;--paper:#fffefa;--cream:#f4efe4;--line:#d5cec0;--muted:#817b70;--gold:#a9833f;--thread:#9b5f4b}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,sans-serif;color:var(--ink);background:#d8d5ce}
-button,select,input{font:inherit}button{cursor:pointer}.app{height:100dvh;display:grid;grid-template-columns:230px 1fr 310px;grid-template-rows:58px 52px 1fr;grid-template-areas:"top top top" "side tools coach" "side desk coach"}
-.top{grid-area:top;background:#f8f6f1;border-bottom:1px solid #c9c5bb;display:flex;align-items:center;padding:0 18px;gap:18px;z-index:20}
-.logo{font:700 22px Georgia,serif;white-space:nowrap}.logo span{font-weight:400}.feather{font-size:25px;margin-right:5px}.menuBtn{display:none;border:0;background:transparent;font-size:24px;padding:8px}
-.docname{flex:1;text-align:center}.docname input{border:0;background:transparent;text-align:center;font-weight:700;outline:0;max-width:100%}.docname small{display:block;color:#8a867c;font-size:10px}
-.actions{display:flex;gap:8px}.actions button,.new{border:1px solid #bbb5aa;background:#fff;padding:9px 13px;border-radius:5px}.actions .dark{background:#292824;color:#fff;border-color:#292824}
-.tools{grid-area:tools;background:#eeeae2;border-bottom:1px solid #c9c5bb;display:flex;align-items:center;padding:5px 14px;gap:4px;overflow-x:auto;scrollbar-width:none}.tools::-webkit-scrollbar{display:none}.tool{min-width:44px;height:40px;border:0;background:transparent;border-radius:4px}.tool:hover{background:#ded9cf}.tool span{display:block;font-size:9px;color:#6e6a62}.sep{height:28px;border-left:1px solid #c7c1b6;margin:0 5px}.tools select{height:30px;border:1px solid #c7c1b6;background:#faf9f6;border-radius:3px}
-.sidebar{grid-area:side;background:#272622;color:#e9e5dc;padding:16px 12px;overflow:auto;z-index:30}.new{width:100%;background:#e9e4d9;color:#24231f;text-align:left;margin-bottom:14px}.sidebar h4{font-size:10px;letter-spacing:1.5px;color:#8e8a82;margin:18px 8px 7px}.side{width:100%;border:0;background:transparent;color:#c8c4ba;text-align:left;padding:9px;border-radius:4px}.side:hover,.side.active{background:#3a3934;color:#fff}.chapter{padding:8px 9px;color:#bbb7ae;font-size:13px;cursor:pointer}.chapter small{display:block;color:#77736b;margin:3px 0 0 18px}.assistBox{margin-top:24px;border-top:1px solid #44423c;padding:16px 8px}.assistBox label{font-size:10px;letter-spacing:1px}.assistBox label b{float:right}.assistBox input{width:100%;accent-color:#d5b15c}.assistBox div{display:flex;justify-content:space-between;font-size:9px;color:#8e8a82}.assistBox small{display:block;text-align:center;margin-top:8px;color:#d9d4c8}
-.versionBox{border-top:1px solid #44423c;margin-top:8px;padding:13px 8px 4px;text-align:center;color:#77736b;font-size:10px;letter-spacing:.4px}
-.desk{grid-area:desk;overflow:auto;padding:34px;display:flex;justify-content:center;background:#d6d3cc}.pageWrap{width:min(794px,100%);position:relative}.ruler{height:18px;background:repeating-linear-gradient(90deg,#c1bdb4 0 1px,transparent 1px 25px);border-bottom:1px solid #aaa69d}.page{min-height:1123px;background:#fff;padding:85px 90px;box-shadow:0 2px 12px #0002;outline:0;font:19px/1.75 Georgia,serif}.page h1{text-align:center;font-size:24px;font-weight:400;margin:0 0 38px}.page p{margin:0 0 1em}.pageFooter{background:#f5f2eb;border-top:1px solid #ccc7bd;padding:8px 12px;display:flex;justify-content:space-between;color:#77736b;font-size:11px}
-.coach{grid-area:coach;background:#f8f6f1;border-left:1px solid #c9c5bb;padding:0 18px;overflow:auto}.coachHead{height:52px;border-bottom:1px solid #d8d3c8;display:flex;align-items:center;justify-content:space-between}.coachHead button{border:0;background:transparent;font-size:22px}.coachBody{padding-top:22px}.eyebrow{font-size:10px;letter-spacing:1.3px;color:#9b7a30}.coach h3{font:22px Georgia,serif}.coach p{font-size:13px;line-height:1.55;color:#625f58}.coachAction{width:100%;padding:11px;margin-top:8px;text-align:left;background:#fff;border:1px solid #d5d0c5;border-radius:5px}.coach.hidden{display:none}.scrim{display:none}
-.card{border:1px solid var(--line);background:#fff;padding:12px;margin:9px 0;border-radius:7px}.card b{font:16px Georgia,serif}.card small{display:block;color:var(--muted);margin-top:5px}.row{display:flex;gap:7px;flex-wrap:wrap}.mini{border:1px solid var(--line);background:#faf8f2;padding:7px 9px;border-radius:5px;font-size:12px}.timeline{border-left:2px solid #c5a25b;margin:14px 0 0 8px;padding-left:15px}.timeline .card{position:relative}.timeline .card:before{content:"";position:absolute;left:-22px;top:15px;width:10px;height:10px;border-radius:50%;background:#a9833f}.meter{height:7px;background:#e6e0d5;border-radius:9px;overflow:hidden;margin:5px 0 12px}.meter i{display:block;height:100%;background:var(--gold)}.thread{display:inline-flex;align-items:center;gap:5px;margin:3px 4px 3px 0;padding:5px 8px;border-radius:12px;background:#eee8dc;font-size:11px}.dot{width:8px;height:8px;border-radius:50%;background:var(--thread)}
+:root{--bg:#f5f1e8;--paper:#fffdf8;--ink:#28241f;--muted:#746d63;--line:#ddd5c8;--accent:#7b4f32;--accent2:#efe4d5;--danger:#a33a32;--shadow:0 12px 34px rgba(55,42,28,.10)}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{font:15px/1.5 Georgia,"Times New Roman",serif;background:var(--bg);color:var(--ink)}
+button,input{font:inherit}button{cursor:pointer}.app{height:100%;display:grid;grid-template-rows:64px 1fr}
+.top{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:0 22px;background:var(--paper);border-bottom:1px solid var(--line)}
+.brand{font-size:23px;font-weight:700}.context{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.save{font-family:system-ui,sans-serif;font-size:13px;color:var(--muted)}
+.mobile-menu{display:none;border:0;background:transparent;font-size:22px}
+.main{min-height:0;display:grid;grid-template-columns:280px 1fr}.side{overflow:auto;padding:20px;background:#eee7dc;border-right:1px solid var(--line)}
+.section{margin-bottom:28px}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.section h2{font:700 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin:0;color:var(--muted)}
+.icon-btn,.small-btn,.primary,.danger,.ghost{border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:7px 10px;color:var(--ink)}
+.icon-btn{width:34px;height:34px;padding:0}.item{display:flex;gap:6px;margin:5px 0}.item-main{flex:1;text-align:left;border:0;border-radius:8px;padding:9px 10px;background:transparent;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.item-main.active{background:var(--paper);box-shadow:0 2px 10px rgba(55,42,28,.06)}.item-actions{display:flex;align-items:center}.mini{border:0;background:transparent;color:var(--muted);padding:5px}
+.docs{border-top:1px solid var(--line);padding-top:16px}.docs button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:7px 3px;color:var(--muted)}
+.workspace{min-width:0;overflow:auto;padding:34px}.empty{max-width:520px;margin:12vh auto;text-align:center}.empty h1{font-size:38px;margin-bottom:10px}.empty p{color:var(--muted)}.primary{background:var(--accent);border-color:var(--accent);color:white}
+.editor-shell{max-width:900px;margin:0 auto}.editor-title{margin-bottom:18px}.editor-title .work-title{font:600 13px system-ui,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.editor-title h1{margin:5px 0 0;font-size:31px}
+.toolbar{position:sticky;top:-34px;z-index:2;display:flex;gap:6px;padding:10px;background:var(--paper);border:1px solid var(--line);border-radius:10px 10px 0 0}.tool{min-width:36px;border:0;border-radius:6px;background:transparent;padding:7px}.tool:hover{background:var(--accent2)}
+.editor{min-height:65vh;padding:42px 52px;background:var(--paper);border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px;box-shadow:var(--shadow);font-size:19px;line-height:1.75;outline:none;white-space:pre-wrap}.editor:empty:before{content:"Comece a escrever…";color:#aaa;pointer-events:none}
+.modal-backdrop{position:fixed;inset:0;background:rgba(35,29,24,.45);display:grid;place-items:center;padding:20px;z-index:20}.modal{width:min(560px,100%);max-height:85vh;overflow:auto;background:var(--paper);border-radius:14px;padding:24px;box-shadow:var(--shadow)}.modal h2{margin-top:0}.modal p,.modal li{color:var(--muted)}.modal input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:white;margin:6px 0 12px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.danger{background:var(--danger);border-color:var(--danger);color:white}.hidden{display:none!important}.corrupt{max-width:650px;margin:10vh auto;background:var(--paper);padding:30px;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+@media(max-width:760px){.app{grid-template-rows:56px 1fr}.top{padding:0 12px;gap:10px}.mobile-menu{display:block}.brand{font-size:19px}.context{display:none}.main{display:block}.side{position:fixed;z-index:10;top:56px;bottom:0;left:0;width:min(310px,88vw);transform:translateX(-105%);transition:.2s;box-shadow:var(--shadow)}.side.open{transform:none}.workspace{padding:18px 12px}.editor-title h1{font-size:26px}.editor{padding:28px 22px;min-height:72vh;font-size:18px}.toolbar{top:-18px}}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="top"><button class="menuBtn" id="menuBtn">☰</button><div class="logo"><span class="feather">🪶</span>Eu<span>Escrevo</span></div><div class="docname"><input id="projectTitle" value="Paciente Zero"><small id="saveState">Proteção de versões ativa</small></div><div class="actions"><button id="save">Salvar</button><button id="canon" class="dark">Finalizar capítulo</button></div></header>
-<nav class="tools">
-<button class="tool"><b>B</b><span>Negrito</span></button><button class="tool"><i>I</i><span>Itálico</span></button><button class="tool"><u>U</u><span>Sublinhar</span></button><div class="sep"></div>
-<button class="tool" data-cmd="undo">↶<span>Desfazer</span></button><button class="tool" data-cmd="redo">↷<span>Refazer</span></button><div class="sep"></div>
-<select id="font"><option>Georgia</option><option>Arial</option><option>Times New Roman</option></select><select id="fontSize"><option value="17">11</option><option value="19" selected>12</option><option value="21">14</option><option value="24">16</option></select>
-<div class="sep"></div><button class="tool" id="cutBtn">✂<span>Cortar</span></button><button class="tool" id="markBtn">📌<span>Marco</span></button><button class="tool" id="review">⌁<span>Raio-X</span></button><button class="tool" id="help">✦<span>Ajuda</span></button>
-</nav>
-<div class="scrim" id="scrim"></div>
-<aside class="sidebar" id="sidebar"><button class="new" id="newText">＋ Novo texto</button>
-<section><h4>OBRA</h4><button class="side active">▤ Manuscrito</button><button class="side">♙ Personagens</button><button class="side">⌖ Lugares</button><button class="side">◈ Banco de ideias</button></section>
-<section><h4>CAPÍTULOS</h4><div id="chapters"></div></section>
-<section><h4>MEMÓRIA DA OBRA</h4><button class="side" id="versions">◷ Linha do tempo</button><button class="side" id="cuts">✂ Mesa de cortes</button><button class="side" id="marks">📌 Marcos</button><button class="side" id="threads">⌁ Fios da história</button><button class="side" id="xray">◇ Raio-X</button></section>
-<div class="assistBox"><label>ASSISTÊNCIA <b id="levelLabel">3</b></label><input id="level" type="range" min="0" max="5" value="3"><div><span>EU</span><span>IA</span></div><small id="levelText">Orientador</small></div>
-<div class="versionBox" id="versionLabel"></div>
+<header class="top">
+<button class="mobile-menu" id="menuBtn" aria-label="Abrir menu">☰</button>
+<div class="brand">EuEscrevo</div>
+<div class="context" id="context"></div>
+<div class="save" id="saveState">Salvo</div>
+</header>
+<div class="main">
+<aside class="side" id="side">
+<section class="section"><div class="section-head"><h2>Obras</h2><button class="icon-btn" id="newWork" title="Nova obra">＋</button></div><div id="works"></div></section>
+<section class="section" id="chaptersSection"><div class="section-head"><h2>Capítulos</h2><button class="icon-btn" id="newChapter" title="Novo capítulo">＋</button></div><div id="chapters"></div></section>
+<nav class="docs"><button data-doc="about">Sobre</button><button data-doc="features">Funcionalidades</button><button data-doc="faq">FAQ</button><button data-doc="history">Histórico de Atualizações</button></nav>
 </aside>
-<main class="desk"><div class="pageWrap"><div class="ruler"></div><article id="editor" class="page" contenteditable="true" spellcheck="true"><h1>Capítulo 3</h1><p><br></p></article><footer class="pageFooter"><span id="words">2 palavras</span><span id="memoryState">0 versões protegidas</span><span>Página 1</span></footer></div></main>
-<aside class="coach" id="coach"><div class="coachHead"><b>EuEscrevo</b><button id="closeCoach">×</button></div><div id="coachBody"></div></aside>
+<main class="workspace" id="workspace"></main>
 </div>
+</div>
+<div id="modalRoot"></div>
 <script>
-const APP_VERSION="0.5";
-const APP_VERSION_LABEL=`EuEscrevo Beta ${APP_VERSION}`;
-document.title=APP_VERSION_LABEL;
-const $=id=>document.getElementById(id), levels=["Autor puro","Leitor crítico","Orientador leve","Orientador","Coescrita","Execução IA"];
-$("versionLabel").textContent=APP_VERSION_LABEL;
-const KEY="euEscrevoV3"; let data;
-try{data=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){data={}}
-data={versions:data.versions||[],cuts:data.cuts||[],marks:data.marks||[],threads:data.threads||[],canon:data.canon||null};
-const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6), now=()=>new Date().toLocaleString("pt-BR");
-function text(){return $("editor").innerHTML}
-function plain(){return $("editor").innerText.trim()}
-function persist(){localStorage.setItem(KEY,JSON.stringify(data));updateMemory()}
-function snapshot(kind="auto",label="Alteração protegida"){const html=text();if(data.versions.at(-1)?.html===html)return;data.versions.push({id:uid(),date:now(),html,kind,label});persist()}
-function count(){let n=plain().split(/\s+/).filter(Boolean).length;$("words").textContent=n+" palavras"}
-function updateMemory(){$("memoryState").textContent=data.versions.length+" versões protegidas"}
-function panel(title,body,eye="MEMÓRIA DA OBRA"){$("coach").classList.remove("hidden");$("coachBody").innerHTML=`<p class="eyebrow">${eye}</p><h3>${title}</h3>${body}`}
-function restore(v){snapshot("before-restore","Antes de restaurar");$("editor").innerHTML=v.html;count();snapshot("restore","Versão restaurada");$("saveState").textContent="Versão restaurada sem apagar a atual"}
-function renderChapters(){let c=$("chapters");c.innerHTML="";["Capítulo 1","Capítulo 2","Capítulo 3"].forEach((x,i)=>{let d=document.createElement("div");d.className="chapter";d.innerHTML="▤ "+x+"<small>"+(i<2?"Canônico":"Em edição")+"</small>";c.appendChild(d)})}
-function showVersions(){let body='<p>Nenhuma versão é sobrescrita ao restaurar outra.</p><div class="timeline">';body+=data.versions.slice().reverse().map(v=>`<div class="card"><b>${v.label}</b><small>${v.date}</small><button class="mini" onclick="restoreById('${v.id}')">Abrir esta versão</button></div>`).join("")||'<div class="card">Ainda não há versões.</div>';panel("Linha do tempo",body+"</div>")}
-window.restoreById=id=>{let v=data.versions.find(x=>x.id===id);if(v){restore(v);showVersions()}}
-function showCuts(){let body='<p>Trechos retirados ficam guardados. Restaurar um corte não apaga o original da mesa.</p>';body+=data.cuts.slice().reverse().map(c=>`<div class="card"><b>${c.label}</b><small>${c.date}</small><p>${c.preview}</p><button class="mini" onclick="restoreCut('${c.id}')">Inserir no texto</button></div>`).join("")||'<div class="card">A mesa está vazia.</div>';panel("Mesa de cortes",body,"NADA SE PERDE")}
-window.restoreCut=id=>{let c=data.cuts.find(x=>x.id===id);snapshot("before-cut-restore","Antes de restaurar corte");$("editor").focus();document.execCommand("insertHTML",false,c.html);count();snapshot("cut-restore","Corte restaurado");showCuts()}
-function cutSelection(){let s=window.getSelection();if(!s||s.isCollapsed){panel("Mesa de cortes","<p>Selecione no manuscrito o trecho que quer retirar. Depois toque em <b>Cortar</b>.</p>","NADA SE PERDE");return}let range=s.getRangeAt(0),box=document.createElement("div");box.appendChild(range.cloneContents());let html=box.innerHTML,preview=s.toString().trim().slice(0,150);snapshot("before-cut","Antes do corte");data.cuts.push({id:uid(),date:now(),html,preview,label:"Trecho cortado"});range.deleteContents();persist();count();snapshot("cut","Depois do corte");$("saveState").textContent="Corte protegido na Mesa de Cortes";showCuts()}
-function createMark(){let name=prompt("Nome deste marco:","Antes de mudar o final");if(!name)return;snapshot("mark",name);data.marks.push({id:uid(),date:now(),name,html:text()});persist();showMarks()}
-function showMarks(){let body='<p>Marcos são fotografias nomeadas do estado da obra.</p>';body+=data.marks.slice().reverse().map(m=>`<div class="card"><b>📌 ${m.name}</b><small>${m.date}</small><button class="mini" onclick="restoreMark('${m.id}')">Abrir marco</button></div>`).join("")||'<div class="card">Nenhum marco criado.</div>';panel("Marcos do escritor",body)}
-window.restoreMark=id=>{let m=data.marks.find(x=>x.id===id);if(m){restore(m);showMarks()}}
-function xray(){let words=plain().toLowerCase().match(/[a-záàâãéêíóôõúç]+/gi)||[],freq={};words.filter(w=>w.length>4).forEach(w=>freq[w]=(freq[w]||0)+1);let top=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,5),paras=$("editor").querySelectorAll("p").length||1,avg=Math.round(words.length/paras),dialogue=(plain().match(/—/g)||[]).length;let rep=top.map(([w,n])=>`${w} (${n}×)`).join(", ")||"sem repetição relevante";panel("Raio-X de revisão",`<p>Leitura estrutural local. O EuEscrevo mostra; você decide.</p><b>Ritmo de parágrafo</b><div class="meter"><i style="width:${Math.min(100,avg*3)}%"></i></div><b>Presença de diálogo</b><div class="meter"><i style="width:${Math.min(100,dialogue*7)}%"></i></div><div class="card"><b>Palavras recorrentes</b><small>${rep}</small></div><div class="card"><b>${words.length} palavras analisadas</b><small>Média aproximada de ${avg} palavras por parágrafo.</small></div>`,"RAIO-X")}
-function showThreads(){let body='<p>Marque fios narrativos e visualize sua presença no capítulo atual.</p><div class="row"><button class="mini" onclick="addThread()">＋ Novo fio</button></div>';body+=data.threads.map(t=>`<div class="card"><span class="thread"><span class="dot" style="background:${t.color}"></span>${t.name}</span><small>${t.count||0} marcações</small><button class="mini" onclick="markThread('${t.id}')">Marcar seleção</button></div>`).join("")||'<div class="card">Nenhum fio criado.</div>';panel("Fios da história",body)}
-window.addThread=()=>{let name=prompt("Nome do fio narrativo:","Vírus");if(!name)return;let colors=["#9b5f4b","#557a8a","#a9833f","#617a5b","#725d82"];data.threads.push({id:uid(),name,color:colors[data.threads.length%colors.length],count:0});persist();showThreads()}
-window.markThread=id=>{let s=window.getSelection();if(!s||s.isCollapsed){alert("Selecione um trecho no manuscrito primeiro.");return}let t=data.threads.find(x=>x.id===id);t.count=(t.count||0)+1;t.lastPreview=s.toString().slice(0,100);persist();showThreads()}
-let timer;
-function schedule(){count();$("saveState").textContent="Protegendo alteração.";clearTimeout(timer);timer=setTimeout(()=>{snapshot("auto","Salvamento automático");$("saveState").textContent="Salvo e versionado automaticamente"},900)}
-$("editor").addEventListener("input",schedule);$("projectTitle").addEventListener("input",persist);window.addEventListener("pagehide",()=>snapshot("exit","Ao sair"));
-$("save").onclick=()=>{snapshot("manual","Salvamento manual");$("saveState").textContent="Versão salva"};
-$("canon").onclick=()=>{snapshot("canon","Capítulo finalizado");data.canon={date:now(),html:text()};persist();$("saveState").textContent="Versão canônica protegida"};
-$("cutBtn").onclick=cutSelection;$("markBtn").onclick=createMark;$("review").onclick=xray;$("versions").onclick=showVersions;$("cuts").onclick=showCuts;$("marks").onclick=showMarks;$("threads").onclick=showThreads;$("xray").onclick=xray;
-$("help").onclick=()=>panel("Escreva. Eu acompanho.","<p>Agora o EuEscrevo protege versões automaticamente, guarda cortes, cria marcos e oferece leitura estrutural sem tomar a autoria.</p><button class='coachAction' onclick='showCuts()'>Abrir Mesa de Cortes</button><button class='coachAction' onclick='createMark()'>Criar um Marco</button>");
-$("closeCoach").onclick=()=>$("coach").classList.add("hidden");
-$("newText").onclick=()=>{if(confirm("Abrir novo texto? O estado atual será protegido antes.")){snapshot("new","Antes de novo texto");$("editor").innerHTML="<h1>Novo texto</h1><p><br></p>";schedule();closeMenu()}};
-$("level").oninput=e=>{$("levelLabel").textContent=e.target.value;$("levelText").textContent=levels[e.target.value];persist()};
-$("font").onchange=e=>$("editor").style.fontFamily=e.target.value;$("fontSize").onchange=e=>$("editor").style.fontSize=e.target.value+"px";
-document.querySelectorAll(".tool").forEach((b,i)=>{if(i<3)b.onclick=()=>document.execCommand(["bold","italic","underline"][i])});document.querySelectorAll("[data-cmd]").forEach(b=>b.onclick=()=>document.execCommand(b.dataset.cmd));
-function openMenu(){$("sidebar").classList.add("open");$("scrim").classList.add("open")}function closeMenu(){$("sidebar").classList.remove("open");$("scrim").classList.remove("open")} $("menuBtn").onclick=openMenu;$("scrim").onclick=closeMenu;
-window.showCuts=showCuts;window.createMark=createMark;
-function restoreLastSession(){
-  const last=data.versions.at(-1);
-  if(last&&last.html){
-    $("editor").innerHTML=last.html;
-    $("saveState").textContent="Última sessão recuperada";
-  }
+(()=>{
+'use strict';
+const STORAGE_KEY='euescrevo_beta1_state';
+const PersistenceService={
+ load(){const raw=localStorage.getItem(STORAGE_KEY);if(raw===null)return null;return JSON.parse(raw)},
+ persist(state){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+};
+let state={works:[],activeWorkId:null}, saveTimer=null, persistenceBlocked=false, editor=null, currentDoc=null;
+const $=s=>document.querySelector(s);
+const uid=()=>crypto.randomUUID?crypto.randomUUID():'id-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+const now=()=>new Date().toISOString();
+function validState(s){
+ if(!s||typeof s!=='object'||!Array.isArray(s.works)||!(s.activeWorkId===null||typeof s.activeWorkId==='string'))return false;
+ const ids=new Set();
+ for(const w of s.works){
+  if(!w||typeof w.id!=='string'||ids.has(w.id)||typeof w.title!=='string'||typeof w.author!=='string'||typeof w.createdAt!=='string'||typeof w.updatedAt!=='string'||!Array.isArray(w.chapters)||w.chapters.length<1||typeof w.activeChapterId!=='string')return false;
+  ids.add(w.id);const cids=new Set();
+  for(const c of w.chapters){if(!c||typeof c.id!=='string'||cids.has(c.id)||typeof c.title!=='string'||typeof c.content!=='string'||typeof c.createdAt!=='string'||typeof c.updatedAt!=='string')return false;cids.add(c.id)}
+  if(!cids.has(w.activeChapterId))return false;
+ }
+ if(s.works.length===0&&s.activeWorkId!==null)return false;
+ if(s.works.length>0&&!ids.has(s.activeWorkId))return false;
+ return true;
 }
-restoreLastSession();
-renderChapters();count();updateMemory();snapshot("startup","Estado inicial protegido");panel("Escreva. Eu acompanho.","<p>Memória da obra ativa. Alterações passam a gerar versões protegidas; cortes podem ir para a Mesa de Cortes e Marcos registram momentos importantes.</p>","EU ESCREVO, VOCÊ DECIDE");
+function activeWork(){return state.works.find(w=>w.id===state.activeWorkId)||null}
+function activeChapter(){const w=activeWork();return w?w.chapters.find(c=>c.id===w.activeChapterId)||null:null}
+function setSave(label){$('#saveState').textContent=label}
+function persistImmediate(){
+ if(persistenceBlocked)return false;
+ if(saveTimer){clearTimeout(saveTimer);saveTimer=null}
+ setSave('Salvando…');
+ try{PersistenceService.persist(state);setSave('Salvo');return true}catch(e){setSave('Erro ao salvar');return false}
+}
+function dirty(){
+ if(persistenceBlocked)return;
+ setSave('Alterações não salvas');clearTimeout(saveTimer);
+ saveTimer=setTimeout(()=>{saveTimer=null;persistImmediate()},500);
+}
+function syncEditor(){
+ if(!editor)return;const w=activeWork(),c=activeChapter();if(!w||!c)return;
+ if(c.content!==editor.innerHTML){c.content=editor.innerHTML;c.updatedAt=now();w.updatedAt=c.updatedAt;dirty()}
+}
+function closeMobile(){if(innerWidth<=760)$('#side').classList.remove('open')}
+function render(){
+ const w=activeWork(),c=activeChapter();
+ $('#context').textContent=w&&c?`${w.title} / ${c.title}`:'';
+ $('#works').innerHTML=state.works.map(x=>`<div class="item"><button class="item-main ${x.id===state.activeWorkId?'active':''}" data-work="${x.id}">${esc(x.title)}</button><span class="item-actions"><button class="mini" data-edit-work="${x.id}" title="Editar obra">✎</button><button class="mini" data-delete-work="${x.id}" title="Excluir obra">×</button></span></div>`).join('');
+ $('#chaptersSection').classList.toggle('hidden',!w);
+ $('#chapters').innerHTML=w?w.chapters.map(x=>`<div class="item"><button class="item-main ${x.id===w.activeChapterId?'active':''}" data-chapter="${x.id}">${esc(x.title)}</button><span class="item-actions"><button class="mini" data-edit-chapter="${x.id}" title="Renomear capítulo">✎</button><button class="mini" data-delete-chapter="${x.id}" title="Excluir capítulo">×</button></span></div>`).join(''):'';
+ if(currentDoc){showDoc(currentDoc,false);return}
+ if(!w){$('#workspace').innerHTML=`<div class="empty"><h1>Sua escrita começa aqui.</h1><p>Crie uma obra para organizar seus capítulos e começar a escrever.</p><button class="primary" id="emptyCreate">Criar obra</button></div>`;editor=null;$('#emptyCreate').onclick=createWork;return}
+ $('#workspace').innerHTML=`<div class="editor-shell"><div class="editor-title"><div class="work-title">${esc(w.title)}</div><h1>${esc(c.title)}</h1></div><div class="toolbar"><button class="tool" data-cmd="bold" title="Negrito"><b>N</b></button><button class="tool" data-cmd="italic" title="Itálico"><i>I</i></button><button class="tool" data-cmd="underline" title="Sublinhado"><u>S</u></button><button class="tool" data-cmd="undo" title="Desfazer">↶</button><button class="tool" data-cmd="redo" title="Refazer">↷</button></div><div class="editor" id="editor" contenteditable="true" spellcheck="true"></div></div>`;
+ editor=$('#editor');editor.innerHTML=c.content;editor.addEventListener('input',syncEditor);
+ document.querySelectorAll('[data-cmd]').forEach(b=>b.onclick=()=>{editor.focus();document.execCommand(b.dataset.cmd,false,null)});
+}
+function esc(v){const d=document.createElement('div');d.textContent=v;return d.innerHTML}
+function modal(title,body,actions){
+ $('#modalRoot').innerHTML=`<div class="modal-backdrop"><div class="modal"><h2>${esc(title)}</h2>${body}<div class="modal-actions">${actions}</div></div></div>`;
+ $('.modal-backdrop').onclick=e=>{if(e.target===e.currentTarget)closeModal()}
+}
+function closeModal(){$('#modalRoot').innerHTML=''}
+function createWork(){
+ modal('Nova obra','<label>Título</label><input id="workTitle" maxlength="120" value="Minha obra"><label>Autor</label><input id="workAuthor" maxlength="120" value="">','<button class="ghost" id="cancel">Cancelar</button><button class="primary" id="confirm">Criar obra</button>');
+ $('#cancel').onclick=closeModal;$('#confirm').onclick=()=>{const title=$('#workTitle').value.trim(),author=$('#workAuthor').value.trim();if(!title)return;const t=now(),cid=uid(),w={id:uid(),title,author,createdAt:t,updatedAt:t,activeChapterId:cid,chapters:[{id:cid,title:'Capítulo 1',content:'',createdAt:t,updatedAt:t}]};state.works.push(w);state.activeWorkId=w.id;currentDoc=null;closeModal();persistImmediate();render()};
+}
+function editWork(id){
+ const w=state.works.find(x=>x.id===id);if(!w)return;
+ modal('Editar obra',`<label>Título</label><input id="workTitle" maxlength="120" value="${esc(w.title)}"><label>Autor</label><input id="workAuthor" maxlength="120" value="${esc(w.author)}">`,'<button class="ghost" id="cancel">Cancelar</button><button class="primary" id="confirm">Salvar</button>');
+ $('#cancel').onclick=closeModal;$('#confirm').onclick=()=>{const t=$('#workTitle').value.trim();if(!t)return;w.title=t;w.author=$('#workAuthor').value.trim();w.updatedAt=now();closeModal();persistImmediate();render()};
+}
+function deleteWork(id){
+ const w=state.works.find(x=>x.id===id);if(!w)return;
+ modal('Excluir obra',`<p><strong>${esc(w.title)}</strong></p><p>Excluir esta obra apagará seus capítulos e textos salvos neste dispositivo. Esta ação não pode ser desfeita na Beta 1.</p>`,'<button class="ghost" id="cancel">Cancelar</button><button class="danger" id="confirm">Excluir obra</button>');
+ $('#cancel').onclick=closeModal;$('#confirm').onclick=()=>{state.works=state.works.filter(x=>x.id!==id);if(state.activeWorkId===id)state.activeWorkId=state.works[0]?.id||null;currentDoc=null;closeModal();persistImmediate();render()};
+}
+function createChapter(){
+ const w=activeWork();if(!w)return;syncEditor();persistImmediate();const t=now(),n=w.chapters.length+1,c={id:uid(),title:`Capítulo ${n}`,content:'',createdAt:t,updatedAt:t};w.chapters.push(c);w.activeChapterId=c.id;w.updatedAt=t;currentDoc=null;persistImmediate();render();closeMobile();
+}
+function renameChapter(id){
+ const w=activeWork(),c=w?.chapters.find(x=>x.id===id);if(!c)return;
+ modal('Renomear capítulo',`<label>Título</label><input id="chapterTitle" maxlength="120" value="${esc(c.title)}">`,'<button class="ghost" id="cancel">Cancelar</button><button class="primary" id="confirm">Salvar</button>');
+ $('#cancel').onclick=closeModal;$('#confirm').onclick=()=>{const t=$('#chapterTitle').value.trim();if(!t)return;c.title=t;c.updatedAt=now();w.updatedAt=c.updatedAt;closeModal();persistImmediate();render()};
+}
+function deleteChapter(id){
+ const w=activeWork(),c=w?.chapters.find(x=>x.id===id);if(!c)return;if(w.chapters.length===1){modal('Capítulo obrigatório','<p>O único capítulo da obra não pode ser excluído.</p>','<button class="primary" id="confirm">Entendi</button>');$('#confirm').onclick=closeModal;return}
+ modal('Excluir capítulo',`<p>Excluir <strong>${esc(c.title)}</strong> removerá o capítulo e seu conteúdo. Capítulos excluídos não podem ser recuperados na Beta 1.</p>`,'<button class="ghost" id="cancel">Cancelar</button><button class="danger" id="confirm">Excluir capítulo</button>');
+ $('#cancel').onclick=closeModal;$('#confirm').onclick=()=>{w.chapters=w.chapters.filter(x=>x.id!==id);if(w.activeChapterId===id)w.activeChapterId=w.chapters[0].id;w.updatedAt=now();closeModal();persistImmediate();render()};
+}
+const docs={
+ about:['Sobre',`<p>EuEscrevo é uma ferramenta criada para o ato de escrever.</p><p>Em vez de exigir que o escritor converse com uma inteligência artificial ou aprenda a criar prompts, o EuEscrevo organiza o ambiente de escrita em obras, capítulos e estados de trabalho.</p><p>A proposta é simples: você escreve. A ferramenta acompanha o processo sem transformar a escrita em uma conversa com um chatbot.</p><p>Criado por André Lafaiete.</p>`],
+ features:['Funcionalidades',`<ul><li>Criação e gestão de múltiplas obras.</li><li>Criação e gestão de capítulos independentes.</li><li>Editor de manuscrito com negrito, itálico e sublinhado.</li><li>Desfazer e refazer no editor.</li><li>Salvamento automático local.</li><li>Restauração da última obra, capítulo e rascunho persistidos.</li><li>Interface adaptada para desktop e mobile.</li></ul>`],
+ faq:['FAQ',`<h3>Onde meus textos ficam salvos?</h3><p>No armazenamento local do navegador deste dispositivo.</p><h3>Os textos sincronizam entre aparelhos?</h3><p>Não. A Beta 1 não possui sincronização entre aparelhos.</p><h3>Existe autosave?</h3><p>Sim. Durante a digitação, o salvamento automático ocorre após 500 ms sem nova alteração. Trocas de obra ou capítulo solicitam persistência imediata.</p><h3>O que significa o indicador de salvamento?</h3><p>Ele informa o estado real: Alterações não salvas, Salvando…, Salvo ou Erro ao salvar.</p><h3>Posso criar múltiplas obras?</h3><p>Sim. Cada obra possui seus próprios capítulos.</p><h3>Os capítulos são independentes?</h3><p>Sim. Cada capítulo mantém seu próprio rascunho.</p><h3>Posso recuperar uma obra excluída?</h3><p>Não. Na Beta 1, a exclusão de uma obra é irreversível.</p><h3>Posso recuperar um capítulo excluído?</h3><p>Não. Na Beta 1, capítulos excluídos não podem ser recuperados.</p><h3>A IA já funciona nesta versão?</h3><p>Não. A Beta 1 não implementa assistência funcional por IA.</p>`],
+ history:['Histórico de Atualizações',`<h3>EuEscrevo Beta 1</h3><p>14 de julho de 2026</p><blockquote>Primeira versão oficial do projeto EuEscrevo.</blockquote><p>A Beta 1 estabelece a arquitetura fundamental do aplicativo: obras independentes, capítulos com rascunhos próprios e persistência local do estado de escrita.</p><p>Este marco representa a reconstrução do EuEscrevo sobre uma base planejada para evolução futura.</p><p>Criador: André Lafaiete.</p>`]
+};
+function showDoc(key,rerender=true){syncEditor();if(rerender)persistImmediate();currentDoc=key;const d=docs[key];$('#workspace').innerHTML=`<div class="editor-shell"><div class="editor-title"><div class="work-title">Documentação</div><h1>${d[0]}</h1></div><div class="editor" style="min-height:auto" contenteditable="false">${d[1]}</div></div>`;editor=null;closeMobile()}
+function corruptScreen(){
+ $('#side').classList.add('hidden');$('#workspace').innerHTML=`<div class="corrupt"><h1>Não foi possível abrir os dados salvos do EuEscrevo.</h1><p>Nenhum novo dado será gravado até você decidir como continuar.</p><button class="danger" id="resetData">Apagar dados locais e recomeçar</button></div>`;setSave('Erro ao salvar');
+ $('#resetData').onclick=()=>{modal('Apagar dados locais?',`<p>Os dados atualmente salvos nesta chave serão apagados. Esta ação não pode ser desfeita pela Beta 1.</p>`,'<button class="ghost" id="cancel">Cancelar</button><button class="danger" id="confirm">Apagar e recomeçar</button>');$('#cancel').onclick=closeModal;$('#confirm').onclick=()=>{localStorage.removeItem(STORAGE_KEY);state={works:[],activeWorkId:null};persistenceBlocked=false;closeModal();$('#side').classList.remove('hidden');setSave('Salvo');render()}};
+}
+$('#menuBtn').onclick=()=>$('#side').classList.toggle('open');
+$('#newWork').onclick=createWork;$('#newChapter').onclick=createChapter;
+$('#works').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.work){syncEditor();persistImmediate();state.activeWorkId=b.dataset.work;currentDoc=null;persistImmediate();render();closeMobile()}else if(b.dataset.editWork)editWork(b.dataset.editWork);else if(b.dataset.deleteWork)deleteWork(b.dataset.deleteWork)};
+$('#chapters').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.chapter){syncEditor();persistImmediate();activeWork().activeChapterId=b.dataset.chapter;currentDoc=null;persistImmediate();render();closeMobile()}else if(b.dataset.editChapter)renameChapter(b.dataset.editChapter);else if(b.dataset.deleteChapter)deleteChapter(b.dataset.deleteChapter)};
+document.querySelectorAll('[data-doc]').forEach(b=>b.onclick=()=>showDoc(b.dataset.doc));
+window.addEventListener('beforeunload',()=>{syncEditor();if(!persistenceBlocked){try{PersistenceService.persist(state)}catch(e){}}});
+try{const loaded=PersistenceService.load();if(loaded===null){state={works:[],activeWorkId:null};render()}else if(validState(loaded)){state=loaded;render()}else{persistenceBlocked=true;corruptScreen()}}catch(e){persistenceBlocked=true;corruptScreen()}
+})();
 </script>
-<style>
-@media(max-width:700px){
-html,body{background:var(--cream);overflow:hidden}.app{height:100dvh;display:grid;grid-template-columns:1fr;grid-template-rows:58px 48px 1fr;grid-template-areas:"top" "tools" "desk"}
-.top{padding:0 8px;gap:4px;background:#f8f3e8}.menuBtn{display:block}.logo{font-size:18px}.feather{font-size:20px}.docname{display:none}.actions{margin-left:auto;gap:4px}.actions button{padding:7px 8px;font-size:11px}.actions .dark{max-width:82px;line-height:1.05}
-.tools{padding:4px 6px;background:#efe8da}.tool{min-width:38px;height:38px}.tool span{display:none}.sep{margin:0 2px}.tools select{min-width:68px;max-width:86px;font-size:12px}
-.desk{padding:0 7px 16px;background:var(--cream);display:block}.pageWrap{width:100%;max-width:none}.ruler{display:none}.page{min-height:calc(100dvh - 138px);width:100%;padding:38px 24px 80px;box-shadow:0 1px 8px #0001;font-size:18px;line-height:1.7;background:var(--paper)}.page h1{font-size:23px;margin-bottom:32px}.pageFooter{position:sticky;bottom:0;background:#f8f3e8ee;backdrop-filter:blur(5px);gap:5px;font-size:9px}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:min(84vw,330px);transform:translateX(-105%);transition:transform .22s ease;box-shadow:8px 0 24px #0004;padding-top:18px}.sidebar.open{transform:translateX(0)}.scrim{display:block;position:fixed;inset:0;background:#0006;opacity:0;pointer-events:none;transition:opacity .22s;z-index:25}.scrim.open{opacity:1;pointer-events:auto}
-.coach{display:none;position:fixed;inset:auto 0 0 0;max-height:75dvh;overflow:auto;z-index:40;border:1px solid var(--line);border-radius:18px 18px 0 0;padding:0 20px;box-shadow:0 -8px 30px #0003}.coach:not(.hidden){display:block}
-}
-</style>
-</body></html>
+</body>
+</html>
