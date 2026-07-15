@@ -41,7 +41,7 @@ button,select,input{font:inherit}button{cursor:pointer}.app{height:100dvh;displa
 <aside class="coach" id="coach"><div class="coachHead"><b>EuEscrevo</b><button id="closeCoach">×</button></div><div id="coachBody"></div></aside>
 </div>
 <script>
-const APP_VERSION="0.4";
+const APP_VERSION="0.5";
 const APP_VERSION_LABEL=`EuEscrevo Beta ${APP_VERSION}`;
 document.title=APP_VERSION_LABEL;
 const $=id=>document.getElementById(id), levels=["Autor puro","Leitor crítico","Orientador leve","Orientador","Coescrita","Execução IA"];
@@ -85,6 +85,14 @@ $("font").onchange=e=>$("editor").style.fontFamily=e.target.value;$("fontSize").
 document.querySelectorAll(".tool").forEach((b,i)=>{if(i<3)b.onclick=()=>document.execCommand(["bold","italic","underline"][i])});document.querySelectorAll("[data-cmd]").forEach(b=>b.onclick=()=>document.execCommand(b.dataset.cmd));
 function openMenu(){$("sidebar").classList.add("open");$("scrim").classList.add("open")}function closeMenu(){$("sidebar").classList.remove("open");$("scrim").classList.remove("open")} $("menuBtn").onclick=openMenu;$("scrim").onclick=closeMenu;
 window.showCuts=showCuts;window.createMark=createMark;
+function restoreLastSession(){
+  const last=data.versions.at(-1);
+  if(last&&last.html){
+    $("editor").innerHTML=last.html;
+    $("saveState").textContent="Última sessão recuperada";
+  }
+}
+restoreLastSession();
 renderChapters();count();updateMemory();snapshot("startup","Estado inicial protegido");panel("Escreva. Eu acompanho.","<p>Memória da obra ativa. Alterações passam a gerar versões protegidas; cortes podem ir para a Mesa de Cortes e Marcos registram momentos importantes.</p>","EU ESCREVO, VOCÊ DECIDE");
 </script>
 <style>
